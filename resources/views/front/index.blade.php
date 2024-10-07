@@ -5,7 +5,7 @@
 		<nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
 
             @foreach($categories as $category)
-			<a href="{{route('front.category', $category->slug)}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">
+			<a href="{{route('front.category', $category->slug)}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
 				<div class="w-6 h-6 flex shrink-0">
 					<img src="{{Storage::url($category->icon)}}" alt="icon" />
 				</div>
@@ -28,10 +28,10 @@
 							<p class="text-white">{{$article->created_at->format('M d, Y')}} • {{$article->category->name}}</p>
 						</div>
 						<div class="prevNextButtons flex items-center gap-4 mb-[60px]">
-							<button class="button--previous appearance-none w-[38px] h-[38px] flex items-center justify-center rounded-full shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+							<button class="button--previous appearance-none w-[38px] h-[38px] flex items-center justify-center rounded-full shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#0285b5] transition-all duration-300">
 								<img src="assets/images/icons/arrow.svg" alt="arrow" />
 							</button>
-							<button class="button--next appearance-none w-[38px] h-[38px] flex items-center justify-center rounded-full shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300 rotate-180">
+							<button class="button--next appearance-none w-[38px] h-[38px] flex items-center justify-center rounded-full shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#0285b5] transition-all duration-300 rotate-180">
 								<img src="assets/images/icons/arrow.svg" alt="arrow" />
 							</button>
 						</div>
@@ -48,12 +48,12 @@
 					Latest Hot News <br />
 					Good for Curiousity
 				</h2>
-				<p class="badge-orange rounded-full p-[8px_18px] bg-[#FFECE1] font-bold text-sm leading-[21px] text-[#FF6B18] w-fit">UP TO DATE</p>
+				<p class="badge-orange rounded-full p-[8px_18px] bg-[#4A98B5] font-bold text-sm leading-[21px] text-[#0285b5] w-fit">UP TO DATE</p>
 			</div>
 			<div class="grid grid-cols-3 gap-[30px]">
 				@forelse($articles as $article)
 				<a href="{{route('front.details', $article->slug)}}" class="card-news">
-					<div class="rounded-[20px] ring-1 ring-[#EEF0F7] p-[26px_20px] flex flex-col gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300 bg-white">
+					<div class="rounded-[20px] ring-1 ring-[#EEF0F7] p-[26px_20px] flex flex-col gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300 bg-white">
 						<div class="thumbnail-container w-full h-[200px] rounded-[20px] flex shrink-0 overflow-hidden relative">
 							<p class="badge-white absolute top-5 left-5 rounded-full p-[8px_18px] bg-white font-bold text-xs leading-[18px]">{{$article->category->name}}</p>
 							<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
@@ -71,7 +71,7 @@
 		</section>
 		<section id="Best-authors" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
 			<div class="flex flex-col text-center gap-[14px] items-center">
-				<p class="badge-orange rounded-full p-[8px_18px] bg-[#FFECE1] font-bold text-sm leading-[21px] text-[#FF6B18] w-fit">BEST AUTHORS</p>
+				<p class="badge-orange rounded-full p-[8px_18px] bg-[#4A98B5] font-bold text-sm leading-[21px] text-[#0285b5] w-fit">BEST AUTHORS</p>
 				<h2 class="font-bold text-[26px] leading-[39px]">
 					Explore All Masterpieces <br />
 					Written by People
@@ -81,7 +81,7 @@
 
 				@forelse($authors as $author)
 				<a href="{{route('front.author', $author->slug)}}" class="card-authors">
-					<div class="rounded-[20px] border border-[#EEF0F7] p-[26px_20px] flex flex-col items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+					<div class="rounded-[20px] border border-[#EEF0F7] p-[26px_20px] flex flex-col items-center gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300">
 						<div class="w-[70px] h-[70px] flex shrink-0 rounded-full overflow-hidden">
 							<img src="{{Storage::url($author->avatar)}}" class="object-cover w-full h-full" alt="avatar" />
 						</div>
@@ -114,7 +114,6 @@
 					Latest For You <br />
 					in Entertainment
 				</h2>
-				<a href="categoryPage.html" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">Explore All</a>
 			</div>
 			<div class="flex justify-between items-center h-fit">
 				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
@@ -133,7 +132,7 @@
 
 						@forelse($entertainment_articles as $article)
 						<a href="{{route('front.details', $article->slug)}}" class="card py-[2px]">
-							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300">
 								<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
 									<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
 								</div>
@@ -157,7 +156,6 @@
 					Latest For You <br />
 					in Business
 				</h2>
-				<a href="categoryPage.html" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">Explore All</a>
 			</div>
 			<div class="flex justify-between items-center h-fit">
 				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
@@ -176,7 +174,7 @@
 
 						@forelse($business_articles as $article)
 						<a href="{{route('front.details', $article->slug)}}" class="card py-[2px]">
-							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300">
 								<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
 									<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
 								</div>
@@ -200,7 +198,6 @@
 					Latest For You <br />
 					in Automotive
 				</h2>
-				<a href="categoryPage.html" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">Explore All</a>
 			</div>
 			<div class="flex justify-between items-center h-fit">
 				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
@@ -219,7 +216,7 @@
 
 						@forelse($automotive_articles as $article)
 						<a href="{{route('front.details', $article->slug)}}" class="card py-[2px]">
-							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300">
 								<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
 									<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
 								</div>

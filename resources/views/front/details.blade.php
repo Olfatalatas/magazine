@@ -6,7 +6,7 @@
 		<nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
 
             @foreach($categories as $item_category)
-			<a href="{{route('front.category', $item_category->slug)}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">
+			<a href="{{route('front.category', $item_category->slug)}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
 				<div class="w-6 h-6 flex shrink-0">
 					<img src="{{Storage::url($item_category->icon)}}" alt="icon" />
 				</div>
@@ -31,26 +31,6 @@
 						</div>
 					</div>
 				</a>
-				<div id="Rating" class="flex items-center gap-1">
-					<div class="flex items-center">
-						<div class="w-4 h-4 flex shrink-0">
-							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
-						</div>
-						<div class="w-4 h-4 flex shrink-0">
-							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
-						</div>
-						<div class="w-4 h-4 flex shrink-0">
-							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
-						</div>
-						<div class="w-4 h-4 flex shrink-0">
-							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
-						</div>
-						<div class="w-4 h-4 flex shrink-0">
-							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
-						</div>
-					</div>
-					<p class="font-semibold text-xs leading-[18px]">(12,490)</p>
-				</div>
 			</div>
 		</div>
 		<div class="w-full h-[500px] flex shrink-0 overflow-hidden">
@@ -77,7 +57,7 @@
                 @forelse($author_news as $item_news)
 				<a href="{{route('front.details', $item_news->slug)}}" class="card-from-author">
 					<div
-						class="rounded-[20px] ring-1 ring-[#EEF0F7] p-[14px] flex gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+						class="rounded-[20px] ring-1 ring-[#EEF0F7] p-[14px] flex gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300">
 						<div class="w-[70px] h-[70px] flex shrink-0 overflow-hidden rounded-2xl">
 							<img src="{{Storage::url($item_news->thumbnail)}}" class="object-cover w-full h-full"
 								alt="thumbnail">
@@ -130,7 +110,7 @@
                 @forelse($articles as $article)
                 <a href="{{route('front.details', $article->slug)}}" class="card">
                     <div
-                        class="flex flex-col gap-4 p-[26px_20px] transition-all duration-300 ring-1 ring-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18] rounded-[20px] overflow-hidden bg-white">
+                        class="flex flex-col gap-4 p-[26px_20px] transition-all duration-300 ring-1 ring-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5] rounded-[20px] overflow-hidden bg-white">
                         <div class="thumbnail-container h-[200px] relative rounded-[20px] overflow-hidden">
                             <div
                                 class="badge absolute left-5 top-5 bottom-auto right-auto flex p-[8px_18px] bg-white rounded-[50px]">

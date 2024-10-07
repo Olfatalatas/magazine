@@ -1,11 +1,11 @@
-<nav id="Navbar" class="max-w-[1130px] mx-auto flex justify-between items-center mt-[30px]">
-		<div class="logo-container flex gap-[30px] items-center">
+	<nav id="Navbar" class="max-w-[1130px] mx-auto flex justify-between items-center mt-[30px]">
+		<div class="logo-container flex gap-[30px] items-center sm:gap-[10px]">
 			<a href="{{route('front.index')}}" class="flex shrink-0">
-				<img src="{{asset('assets/images/logos/logo.svg')}}" alt="logo" />
+				<img src="{{asset('assets/images/logos/logo_gerbang_publik.jpg')}}" alt="logo" height="100px" width="100px" class="rounded-full" />
 			</a>
 			<div class="h-12 border border-[#E8EBF4]"></div>
 			<form method="GET" action="{{route('front.search')}}"
-				class="w-[450px] flex items-center rounded-full border border-[#E8EBF4] p-[12px_20px] gap-[10px] focus-within:ring-2 focus-within:ring-[#FF6B18] transition-all duration-300">
+				class="w-[450px] flex items-center rounded-full border border-[#E8EBF4] p-[12px_20px] gap-[10px] focus-within:ring-2 focus-within:ring-[#0285b5] transition-all duration-300">
 
 			@csrf
 
@@ -18,13 +18,10 @@
 			</form>
 		</div>
 		<div class="flex items-center gap-3">
-			<a href=""
-				class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">Upgrade
-				Pro</a>
-			<a href=""
-				class="rounded-full p-[12px_22px] flex gap-[10px] font-bold transition-all duration-300 bg-[#FF6B18] text-white hover:shadow-[0_10px_20px_0_#FF6B1880]">
+			<a href="https://wa.me/6281249036099?text=Halo%20saya%20ingin%20memasang%20iklan%20saya"
+				class="rounded-full p-[12px_22px] flex gap-[10px] font-bold transition-all duration-300 bg-[#0285b5] text-white hover:shadow-[0_10px_20px_0_#0285b580]">
 				<div class="w-6 h-6 flex shrink-0">
-					<img src="{{asset('assets/images/icons/favorite-chart.svg')}}" alt="icon" />
+					<img src="{{asset('assets/images/icons/favorite-chart.svg')}}" alt="icon"/>
 				</div>
 				<span>Post Ads</span>
 			</a>
