@@ -15,6 +15,18 @@
             @endforeach
 			
 		</nav>
+		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
+			<div class="flex flex-col gap-3 shrink-0 w-fit">
+				<a href="{{$bannerads->link}}">
+					<div class="w-full h-full flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
+						<img src="{{Storage::url($bannerads->thumbnail)}}" class="object-cover w-full h-full" alt="ads" />
+					</div>
+				</a>
+				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
+					Our Advertisement <a href="#" class="w-[18px] h-[18px]"></a>
+				</p>
+			</div>
+		</section>
 		<section id="heading" class="max-w-[1130px] mx-auto flex items-center flex-col gap-[30px] mt-[70px]">
 			<h1 class="text-4xl leading-[45px] font-bold text-center">
 				Explore Hot Trending <br />
@@ -58,6 +70,18 @@
                 @empty
                 <p>belum ada artikel dengan keyword tersebut</p>
                 @endforelse
+			</div>
+		</section>
+		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
+			<div class="flex flex-col gap-3 shrink-0 w-fit">
+				<a href="{{$bannerads->link}}">
+					<div class="w-full h-full flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
+						<img src="{{Storage::url($bannerads->thumbnail)}}" class="object-cover w-full h-full" alt="ads" />
+					</div>
+				</a>
+				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
+					Our Advertisement <a href="#" class="w-[18px] h-[18px]"></a>
+				</p>
 			</div>
 		</section>
 	</body>
