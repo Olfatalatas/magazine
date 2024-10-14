@@ -79,7 +79,21 @@ class FrontController extends Controller
         ->inRandomOrder()
         ->first();
 
-        return view('front.index',compact('business_featured_articles', 'automotive_featured_articles', 'entertainment_featured_articles', 'automotive_articles', 'business_articles', 'entertainment_articles', 'categories', 'articles', 'authors', 'featured_articles', 'bannerads'));
+        $square_ads = BannerAds::where('type', 'square')
+        ->where('is_active', 'active')
+        ->inRandomOrder()
+        ->take(2)
+        ->get();
+
+        if ($square_ads->count() < 2) {
+            $square_ads_1 = $square_ads->first();
+            $square_ads_2 = $square_ads->first();
+        } else {
+            $square_ads_1 = $square_ads->get(0);
+            $square_ads_2 = $square_ads->get(1);
+        }
+
+        return view('front.index',compact('business_featured_articles', 'automotive_featured_articles', 'entertainment_featured_articles', 'automotive_articles', 'business_articles', 'entertainment_articles', 'categories', 'articles', 'authors', 'featured_articles', 'bannerads', 'square_ads_1', 'square_ads_2'));
     }
 
     public function category(Category $category){
@@ -117,7 +131,13 @@ class FrontController extends Controller
         $articles = ArticleNews::with(['category', 'author'])
         ->where('name', 'like', '%' . $keyword . '%')->paginate(6);
 
-        return view('front.search', compact('articles', 'keyword', 'categories'));
+        $bannerads = BannerAds::where('is_active', 'active')
+        ->where('type', 'banner')
+        ->inRandomOrder()
+        // ->take(1)
+        ->first();
+
+        return view('front.search', compact('articles', 'keyword', 'categories', 'bannerads'));
     }
 
     public function details(ArticleNews $articleNews){
