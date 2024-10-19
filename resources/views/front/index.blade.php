@@ -14,6 +14,13 @@
             @endforeach
 			
 		</nav>
+		<section id="running-text" class="max-w-[1130px] mx-auto flex justify-center mt-[20px]">
+			<div class="flex flex-col">
+				<marquee behavior="scroll" direction="left" class="bg-[#0285b5] h-[30px] border rounded-lg text-white">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse at mollitia laboriosam suscipit porro nulla omnis! Dignissimos ipsum laborum ipsam illo, veritatis, cum fuga eius dolorem, enim alias quidem asperiores?
+				</marquee>
+			</div>
+		</section>
 		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
 			<div class="flex flex-col gap-3 shrink-0 w-fit">
 				<a href="{{$bannerads->link}}">
