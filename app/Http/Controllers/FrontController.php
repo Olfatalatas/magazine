@@ -104,7 +104,22 @@ class FrontController extends Controller
         ->inRandomOrder()
         // ->take(1)
         ->first();
-        return view('front.category', compact('category', 'categories', 'bannerads'));
+
+        $square_ads = BannerAds::where('type', 'square')
+        ->where('is_active', 'active')
+        ->inRandomOrder()
+        ->take(2)
+        ->get();
+
+        if ($square_ads->count() < 2) {
+            $square_ads_1 = $square_ads->first();
+            $square_ads_2 = $square_ads->first();
+        } else {
+            $square_ads_1 = $square_ads->get(0);
+            $square_ads_2 = $square_ads->get(1);
+        }
+
+        return view('front.category', compact('category', 'categories', 'bannerads', 'square_ads_1', 'square_ads_2'));
     }
 
     public function author(Author $author){
@@ -116,7 +131,21 @@ class FrontController extends Controller
         // ->take(1)
         ->first();
 
-        return view('front.author', compact('categories', 'author','bannerads'));
+        $square_ads = BannerAds::where('type', 'square')
+        ->where('is_active', 'active')
+        ->inRandomOrder()
+        ->take(2)
+        ->get();
+
+        if ($square_ads->count() < 2) {
+            $square_ads_1 = $square_ads->first();
+            $square_ads_2 = $square_ads->first();
+        } else {
+            $square_ads_1 = $square_ads->get(0);
+            $square_ads_2 = $square_ads->get(1);
+        }
+
+        return view('front.author', compact('categories', 'author','bannerads', 'square_ads_1', 'square_ads_2'));
     }
 
     public function search(Request $request){
@@ -137,7 +166,21 @@ class FrontController extends Controller
         // ->take(1)
         ->first();
 
-        return view('front.search', compact('articles', 'keyword', 'categories', 'bannerads'));
+        $square_ads = BannerAds::where('type', 'square')
+        ->where('is_active', 'active')
+        ->inRandomOrder()
+        ->take(2)
+        ->get();
+
+        if ($square_ads->count() < 2) {
+            $square_ads_1 = $square_ads->first();
+            $square_ads_2 = $square_ads->first();
+        } else {
+            $square_ads_1 = $square_ads->get(0);
+            $square_ads_2 = $square_ads->get(1);
+        }
+
+        return view('front.search', compact('articles', 'keyword', 'categories', 'bannerads', 'square_ads_1', 'square_ads_2'));
     }
 
     public function details(ArticleNews $articleNews){
