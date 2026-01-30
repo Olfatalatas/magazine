@@ -1,5 +1,12 @@
 # 📖 Magazine — Aplikasi Portal Berita (Laravel)
 
+<p align="center">
+  <img src="https://img.shields.io/github/stars/Olfatalatas/magazine?style=social" alt="GitHub Stars" />
+  <img src="https://img.shields.io/github/issues/Olfatalatas/magazine" alt="Issues" />
+  <img src="https://img.shields.io/github/license/Olfatalatas/magazine" alt="License" />
+  <img src="https://img.shields.io/badge/php-8.1+-8892BF" alt="PHP" />
+</p>
+
 **Ringkasan singkat**
 
 Magazine adalah aplikasi web portal berita/majalah berbasis **Laravel**, cocok untuk portofolio atau sebagai basis untuk membuat media berita sederhana. Proyek ini sudah dilengkapi model untuk artikel, penulis, kategori, banner iklan, dan panel admin menggunakan **Filament**.
@@ -79,6 +86,20 @@ Magazine adalah aplikasi web portal berita/majalah berbasis **Laravel**, cocok u
    ```
 
    Buka http://127.0.0.1:8000
+
+---
+
+## 🖼️ Screenshots
+
+<p align="center">
+  <img src="public/assets/images/landing_page.png" alt="Landing Page - Desktop" style="width:32%;max-width:360px;margin:4px;border:1px solid #eee;padding:6px;background:#fff"/>
+  <img src="public/assets/images/landing_page_2.png" alt="Landing Page - Mobile" style="width:32%;max-width:360px;margin:4px;border:1px solid #eee;padding:6px;background:#fff"/>
+  <img src="public/assets/images/detail_news.png" alt="Detail News" style="width:32%;max-width:360px;margin:4px;border:1px solid #eee;padding:6px;background:#fff"/>
+</p>
+
+<p align="center">
+  <sub><strong>Preview:</strong> Landing page (desktop), Landing page (mobile), dan detail berita.</sub>
+</p>
 
 ---
 
