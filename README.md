@@ -98,7 +98,7 @@ Magazine adalah aplikasi web portal berita/majalah berbasis **Laravel**, cocok u
 </p>
 
 <p align="center">
-  <sub><strong>Preview:</strong> Landing page (desktop), Landing page (mobile), dan detail berita.</sub>
+  <sub><strong>Preview:</strong> Landing page dan detail berita.</sub>
 </p>
 
 ---
@@ -142,5 +142,3 @@ Magazine adalah aplikasi web portal berita/majalah berbasis **Laravel**, cocok u
 - Lisensi: **MIT**
 
 ---
-
-Jika mau, saya bisa menambahkan `CONTRIBUTING.md`, `SECURITY.md`, screenshot, dan badge CI.
