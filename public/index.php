@@ -41,7 +41,7 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 // 3. Jika berjalan di Vercel, paksa override lokasi storage dan bootstrap cache path ke /tmp
 if (isset($_SERVER['VERCEL_HOSTNAME']) || isset($_ENV['VERCEL_HOSTNAME']) || isset($_SERVER['VERCEL']) || isset($_ENV['VERCEL']) || getenv('APP_STORAGE') === '/tmp/storage') {
     $app->useStoragePath('/tmp/storage');
-    $app->useBootstrapCachePath('/tmp/bootstrap/cache'); // <--- Solusi Inti Stack Overflow Anda!
+    $app->useBootstrapPath('/tmp/bootstrap'); // <--- Solusi Inti Stack Overflow Anda (Diperbarui untuk Laravel 11)!
 }
 
 // 4. Jalankan request handling menggunakan instance yang sudah dimodifikasi
