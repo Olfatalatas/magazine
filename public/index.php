@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 define('LARAVEL_START', microtime(true));
 
 // 1. Trik Environment khusus untuk Serverless Vercel
-if (isset($_SERVER['VERCEL_HOSTNAME']) || isset($_ENV['VERCEL_HOSTNAME'])) {
+if (isset($_SERVER['VERCEL_HOSTNAME']) || isset($_ENV['VERCEL_HOSTNAME']) || isset($_SERVER['VERCEL']) || isset($_ENV['VERCEL']) || getenv('APP_STORAGE') === '/tmp/storage') {
     $storagePath = '/tmp/storage';
     
     // Buat folder-folder writable yang dibutuhkan di dalam /tmp jika belum ada
@@ -39,7 +39,7 @@ require __DIR__.'/../vendor/autoload.php';
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 // 3. Jika berjalan di Vercel, paksa override lokasi storage dan bootstrap cache path ke /tmp
-if (isset($_SERVER['VERCEL_HOSTNAME']) || isset($_ENV['VERCEL_HOSTNAME'])) {
+if (isset($_SERVER['VERCEL_HOSTNAME']) || isset($_ENV['VERCEL_HOSTNAME']) || isset($_SERVER['VERCEL']) || isset($_ENV['VERCEL']) || getenv('APP_STORAGE') === '/tmp/storage') {
     $app->useStoragePath('/tmp/storage');
     $app->useBootstrapCachePath('/tmp/bootstrap/cache'); // <--- Solusi Inti Stack Overflow Anda!
 }
