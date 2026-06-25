@@ -188,6 +188,7 @@
 				</h2>
 			</div>
 			<div class="flex justify-between items-center h-fit">
+				@if($entertainment_featured_articles)
 				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
 					<img src="{{Storage::url($entertainment_featured_articles->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
@@ -199,6 +200,7 @@
 						</div>
 					</div>
 				</div>
+				@endif
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
 
@@ -253,6 +255,7 @@
 				</h2>
 			</div>
 			<div class="flex justify-between items-center h-fit">
+				@if($business_featured_articles)
 				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
 					<img src="{{Storage::url($business_featured_articles->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
@@ -264,6 +267,7 @@
 						</div>
 					</div>
 				</div>
+				@endif
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
 
@@ -318,6 +322,7 @@
 				</h2>
 			</div>
 			<div class="flex justify-between items-center h-fit">
+				@if($automotive_featured_articles)
 				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
 					<img src="{{Storage::url($automotive_featured_articles->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
@@ -329,6 +334,7 @@
 						</div>
 					</div>
 				</div>
+				@endif
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
 
