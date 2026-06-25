@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Livewire\Features\SupportFileUploads\FileUploadController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,8 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (isset($_SERVER['VERCEL']) || isset($_ENV['VERCEL']) || getenv('APP_STORAGE') === '/tmp/storage') {
-            \Illuminate\Support\Facades\URL::forceScheme('https');
+        // Nonaktifkan middleware bermasalah khusus untuk file upload Livewire di Vercel
+        if (isset($_SERVER['VERCEL_HOSTNAME']) || env('APP_ENV') === 'production') {
+            FileUploadController::$middleware = ['web']; // Menghapus middleware 'signed' bawaan jika bermasalah
         }
     }
 }
