@@ -15,7 +15,7 @@
 			
 		</nav>
 		<section id="Featured" class="mt-[30px]">
-			<div class="main-carousel w-full">
+			<div class="main-carousel w-full" data-flickity='{"cellAlign": "left", "contain": true, "prevNextButtons": false, "pageDots": false, "wrapAround": true}'>
 
 				@forelse($featured_articles as $article)
 				<div class="featured-news-card relative w-full h-[550px] flex shrink-0 overflow-hidden">
@@ -269,5 +269,35 @@
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 		<!-- Carousel -->
 		<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-		<script src="{{asset('customjs/carousel.js')}}?v=2"></script>
+		<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var carouselElem = document.querySelector('.main-carousel');
+                if (!carouselElem) return;
+                
+                var flkty = Flickity.data(carouselElem);
+                if (!flkty) {
+                    flkty = new Flickity(carouselElem, {
+                        cellAlign: 'left',
+                        contain: true,
+                        prevNextButtons: false,
+                        pageDots: false,
+                        wrapAround: true
+                    });
+                }
+
+                var prevButtons = document.querySelectorAll('.button--previous');
+                prevButtons.forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        flkty.previous(true);
+                    });
+                });
+
+                var nextButtons = document.querySelectorAll('.button--next');
+                nextButtons.forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        flkty.next(true);
+                    });
+                });
+            });
+		</script>
 @endpush
