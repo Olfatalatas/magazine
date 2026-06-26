@@ -14,25 +14,6 @@
             @endforeach
 			
 		</nav>
-		<section id="running-text" class="max-w-[1130px] mx-auto flex justify-center mt-[20px]">
-			<div class="flex flex-col">
-				<marquee behavior="scroll" direction="left" class="bg-[#0285b5] h-[30px] border rounded-lg text-white">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse at mollitia laboriosam suscipit porro nulla omnis! Dignissimos ipsum laborum ipsam illo, veritatis, cum fuga eius dolorem, enim alias quidem asperiores?
-				</marquee>
-			</div>
-		</section>
-		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
-			<div class="flex flex-col gap-3 shrink-0 w-fit">
-				<a href="{{$bannerads->link}}">
-					<div class="w-full h-full flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
-						<img src="{{Storage::url($bannerads->thumbnail)}}" class="object-cover w-full h-full" alt="ads" />
-					</div>
-				</a>
-				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img src="assets/images/icons/message-question.svg" alt="icon" /></a>
-				</p>
-			</div>
-		</section>
 		<section id="Featured" class="mt-[30px]">
 			<div class="main-carousel w-full">
 
@@ -61,18 +42,6 @@
 				@endforelse
 			</div>
 		</section>
-		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
-			<div class="flex flex-col gap-3 shrink-0 w-fit">
-				<a href="{{$bannerads->link}}">
-					<div class="w-full h-full flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
-						<img src="{{Storage::url($bannerads->thumbnail)}}" class="object-cover w-full h-full" alt="ads" />
-					</div>
-				</a>
-				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img src="assets/images/icons/message-question.svg" alt="icon" /></a>
-				</p>
-			</div>
-		</section>
 		<section id="Up-to-date" class="max-w-[1200px] mx-auto flex flex-col gap-[30px] mt-[70px]">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
@@ -98,47 +67,6 @@
 				@empty
 				<p>belum ada data terbaru...</p>
 				@endforelse
-				<div class="side-bar flex flex-col w-[200px] shrink-0 gap-10"> 
-					<div class="ads flex flex-col gap-3 w-full">
-						<a href="{{$square_ads_1->link}}">
-							<img src="{{Storage::url($square_ads_1->thumbnail)}}" class="object-cover rounded-xl w-full h-[350px]" alt="ads" />
-						</a>
-						<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-							Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-									src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section id="Advertisement" class="max-w-[1200px] mx-auto flex justify-center mt-[70px] gap-8">
-			<div class="ads flex flex-col gap-3 w-[220px]">
-				<a href="{{$square_ads_2->link}}">
-					<img src="{{Storage::url($square_ads_2->thumbnail)}}" class="object-contain w-full h-full" alt="ads" />
-				</a>
-				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-					src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
-				</p>
-			</div>
-			<div class="flex flex-col gap-3 shrink-0 w-fit">
-				<a href="{{$bannerads->link}}">
-					<div class="w-[600px] h-[225px] flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
-						<img src="{{Storage::url($bannerads->thumbnail)}}" class="object-cover w-full h-full" alt="ads" />
-					</div>
-				</a>
-				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img src="assets/images/icons/message-question.svg" alt="icon" /></a>
-				</p>
-			</div>
-			<div class="ads flex flex-col gap-3 w-[220px]">
-				<a href="{{$square_ads_2->link}}">
-					<img src="{{Storage::url($square_ads_2->thumbnail)}}" class="object-contain w-full h-full" alt="ads" />
-				</a>
-				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-					src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
-				</p>
 			</div>
 		</section>
 		<section id="Best-authors" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
@@ -180,6 +108,7 @@
 				</p>
 			</div>
 		</section>
+		@if($entertainment_featured_articles || $entertainment_articles->count() > 0)
 		<section id="Latest-entertainment" class="max-w-[1200px] mx-auto flex flex-col gap-[30px] mt-[70px]">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
@@ -222,19 +151,9 @@
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
-				<div class="side-bar flex flex-col w-[200px] shrink-0 gap-10 pl-5"> 
-					<div class="ads flex flex-col gap-3 w-full">
-						<a href="{{$square_ads_1->link}}">
-							<img src="{{Storage::url($square_ads_1->thumbnail)}}" class="object-cover rounded-xl w-full h-[350px]" alt="ads" />
-						</a>
-						<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-							Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-									src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
-						</p>
-					</div>
-				</div>
 			</div>
 		</section>
+		@endif
 		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
 			<div class="flex flex-col gap-3 shrink-0 w-fit">
 				<a href="{{$bannerads->link}}">
@@ -247,6 +166,7 @@
 				</p>
 			</div>
 		</section>
+		@if($business_featured_articles || $business_articles->count() > 0)
 		<section id="Latest-business" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
@@ -289,19 +209,9 @@
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
-				<div class="side-bar flex flex-col w-[200px] shrink-0 gap-10 pl-5"> 
-					<div class="ads flex flex-col gap-3 w-full">
-						<a href="{{$square_ads_1->link}}">
-							<img src="{{Storage::url($square_ads_1->thumbnail)}}" class="object-cover rounded-xl w-full h-[350px]" alt="ads" />
-						</a>
-						<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-							Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-									src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
-						</p>
-					</div>
-				</div>
 			</div>
 		</section>
+		@endif
 		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
 			<div class="flex flex-col gap-3 shrink-0 w-fit">
 				<a href="{{$bannerads->link}}">
@@ -314,6 +224,7 @@
 				</p>
 			</div>
 		</section>
+		@if($automotive_featured_articles || $automotive_articles->count() > 0)
 		<section id="Latest-automotive" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
@@ -356,49 +267,9 @@
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
-				<div class="side-bar flex flex-col w-[200px] shrink-0 gap-10 pl-5"> 
-					<div class="ads flex flex-col gap-3 w-full">
-						<a href="{{$square_ads_1->link}}">
-							<img src="{{Storage::url($square_ads_1->thumbnail)}}" class="object-cover rounded-xl w-full h-[350px]" alt="ads" />
-						</a>
-						<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-							Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-									src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
-						</p>
-					</div>
-				</div>
 			</div>
 		</section>
-		<section id="Advertisement" class="max-w-[1200px] mx-auto flex justify-center mt-[70px] gap-8">
-			<div class="ads flex flex-col gap-3 w-[220px]">
-				<a href="{{$square_ads_2->link}}">
-					<img src="{{Storage::url($square_ads_2->thumbnail)}}" class="object-contain w-full h-full" alt="ads" />
-				</a>
-				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-					src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
-				</p>
-			</div>
-			<div class="flex flex-col gap-3 shrink-0 w-fit">
-				<a href="{{$bannerads->link}}">
-					<div class="w-[600px] h-[225px] flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
-						<img src="{{Storage::url($bannerads->thumbnail)}}" class="object-cover w-full h-full" alt="ads" />
-					</div>
-				</a>
-				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img src="assets/images/icons/message-question.svg" alt="icon" /></a>
-				</p>
-			</div>
-			<div class="ads flex flex-col gap-3 w-[220px]">
-				<a href="{{$square_ads_2->link}}">
-					<img src="{{Storage::url($square_ads_2->thumbnail)}}" class="object-contain w-full h-full" alt="ads" />
-				</a>
-				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-					src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
-				</p>
-			</div>
-		</section>
+		@endif
 	</body>
 @endsection
 @push('after-styles')

@@ -1,7 +1,7 @@
 	<nav id="Navbar" class="max-w-[1000px] mx-auto flex justify-between items-center mt-[30px]">
 		<div class="logo-container flex gap-[30px] items-center sm:gap-[10px]">
 			<a href="{{route('front.index')}}" class="flex shrink-0">
-				<img src="{{asset('assets/images/logos/logo_gerbang_publik.jpg')}}" alt="logo" height="100px" width="100px" class="rounded-full" />
+				<img src="{{asset('assets/images/logos/logo.svg')}}" alt="logo" class="h-11 w-auto" />
 			</a>
 			<div class="h-12 border border-[#E8EBF4]"></div>
 			<form method="GET" action="{{route('front.search')}}"
@@ -18,7 +18,7 @@
 			</form>
 		</div>
 		<div class="flex items-center gap-3">
-			<a href="https://wa.me/6281249036099?text=Halo%20saya%20ingin%20memasang%20iklan%20saya"
+			<a href="https://wa.me/6281227392837?text=Halo%20saya%20ingin%20memasang%20iklan%20saya"
 				class="rounded-full p-[12px_22px] flex gap-[10px] font-bold transition-all duration-300 bg-[#0285b5] text-white hover:shadow-[0_10px_20px_0_#0285b580]">
 				<div class="w-6 h-6 flex shrink-0">
 					<img src="{{asset('assets/images/icons/favorite-chart.svg')}}" alt="icon"/>
