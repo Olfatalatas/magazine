@@ -3,17 +3,57 @@
 @section('content')
 	<body class="font-[Poppins] pb-[72px]">
 		<x-navbar/>
-		<nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
-
-            @foreach($categories as $category)
-			<a href="{{route('front.category', $category->slug)}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
-				<div class="w-6 h-6 flex shrink-0">
-					<img src="{{Storage::url($category->icon)}}" alt="icon" />
+		<nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px] px-4 xl:px-0 relative z-40">
+			<!-- Desktop/Tablet: Category Button -->
+			<div class="hidden md:flex flex-col items-center relative">
+				<button onclick="document.getElementById('desktopCategoryList').classList.toggle('hidden')" class="rounded-full p-[12px_22px] flex items-center gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5] bg-white cursor-pointer">
+					<span>Explore Categories</span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 transition-transform duration-300">
+						<path d="M19.9201 8.9502L13.4001 15.4702C12.6301 16.2402 11.3701 16.2402 10.6001 15.4702L4.08008 8.9502" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+				
+				<!-- Dropdown (Grid Sideways) -->
+				<div id="desktopCategoryList" class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50">
+					<div class="w-max max-w-[90vw] bg-white rounded-[20px] shadow-[0_10px_30px_0_rgba(0,0,0,0.1)] border border-[#EEF0F7] p-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
+						@foreach($categories as $category)
+						<a href="{{route('front.category', $category->slug)}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
+							<div class="w-6 h-6 flex shrink-0">
+								<img src="{{Storage::url($category->icon)}}" alt="icon" />
+							</div>
+							<span class="whitespace-nowrap">{{$category->name}}</span>
+						</a>
+						@endforeach
+					</div>
 				</div>
-				<span>{{$category->name}}</span>
-			</a>
-            @endforeach
-			
+			</div>
+
+			<!-- Mobile: Burger Menu -->
+			<div class="md:hidden w-full relative">
+				<button onclick="document.getElementById('mobileCategoryList').classList.toggle('hidden')" class="w-full rounded-full p-[12px_22px] flex justify-between items-center font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5] bg-white cursor-pointer">
+					<span>Explore Categories</span>
+					<!-- Burger Icon -->
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M3 7H21" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"/>
+						<path d="M3 12H21" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"/>
+						<path d="M3 17H21" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"/>
+					</svg>
+				</button>
+
+				<!-- Dropdown Mobile -->
+				<div id="mobileCategoryList" class="hidden absolute top-full left-0 w-full mt-2 z-50">
+					<div class="flex flex-col gap-4 bg-white rounded-[20px] shadow-[0_10px_30px_0_rgba(0,0,0,0.1)] border border-[#EEF0F7] p-4 max-h-[300px] overflow-y-auto">
+						@foreach($categories as $category)
+						<a href="{{route('front.category', $category->slug)}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
+							<div class="w-6 h-6 flex shrink-0">
+								<img src="{{Storage::url($category->icon)}}" alt="icon" />
+							</div>
+							<span class="whitespace-nowrap">{{$category->name}}</span>
+						</a>
+						@endforeach
+					</div>
+				</div>
+			</div>
 		</nav>
 		<section id="Featured" class="mt-[30px]">
 			<div class="main-carousel w-full" data-flickity='{"cellAlign": "left", "contain": true, "prevNextButtons": false, "pageDots": false, "wrapAround": true}'>
@@ -22,7 +62,7 @@
 				<div class="featured-news-card relative w-full h-[550px] flex shrink-0 overflow-hidden">
 					<img src="{{Storage::url($article->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
-					<div class="card-detail max-w-[1130px] w-full mx-auto flex items-end justify-between pb-10 relative z-20">
+					<div class="card-detail max-w-[1130px] w-full mx-auto flex flex-col md:flex-row md:items-end justify-between pb-10 relative z-20 px-4 xl:px-0 gap-4 md:gap-0">
 						<div class="flex flex-col gap-[10px]">
 							<p class="text-white">Featured</p>
 							<a href="{{route('front.details', $article->slug)}}" class="font-bold text-4xl leading-[45px] text-white two-lines hover:underline transition-all duration-300">{{$article->name}}</a>
@@ -43,7 +83,7 @@
 				@endforelse
 			</div>
 		</section>
-		<section id="Up-to-date" class="max-w-[1200px] mx-auto flex flex-col gap-[30px] mt-[70px]">
+		<section id="Up-to-date" class="max-w-[1200px] mx-auto flex flex-col gap-[30px] mt-[70px] px-4 xl:px-0">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
 					Latest Hot News <br />
@@ -51,7 +91,7 @@
 				</h2>
 				<p class="badge-orange rounded-full p-[8px_18px] bg-[#67caee] font-bold text-sm leading-[21px] text-[#0285b5] w-fit">UP TO DATE</p>
 			</div>
-			<div class="flex flex-cols-3 gap-[30px]">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
 				@forelse($articles as $article)
 				<a href="{{route('front.details', $article->slug)}}" class="card-news">
 					<div class="rounded-[20px] ring-1 ring-[#EEF0F7] p-[26px_20px] flex flex-col gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300 bg-white">
@@ -70,7 +110,7 @@
 				@endforelse
 			</div>
 		</section>
-		<section id="Best-authors" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
+		<section id="Best-authors" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px] px-4 xl:px-0">
 			<div class="flex flex-col text-center gap-[14px] items-center">
 				<p class="badge-orange rounded-full p-[8px_18px] bg-[#67caee] font-bold text-sm leading-[21px] text-[#0285b5] w-fit">BEST AUTHORS</p>
 				<h2 class="font-bold text-[26px] leading-[39px]">
@@ -78,7 +118,7 @@
 					Written by People
 				</h2>
 			</div>
-			<div class="grid grid-cols-6 gap-[30px]">
+			<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[30px]">
 
 				@forelse($authors as $author)
 				<a href="{{route('front.author', $author->slug)}}" class="card-authors">
@@ -97,10 +137,10 @@
 				@endforelse
 			</div>
 		</section>
-		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
+		<section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px] px-4 xl:px-0">
 			<div class="flex flex-col gap-3 shrink-0 w-fit">
 				<a href="{{$bannerads->link}}">
-					<div class="w-[900px] h-[120px] flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
+					<div class="w-full max-w-[900px] h-[120px] flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
 						<img src="{{Storage::url($bannerads->thumbnail)}}" class="object-cover w-full h-full" alt="ads" />
 					</div>
 				</a>
@@ -114,16 +154,16 @@
             $display_ent_featured = $entertainment_featured_articles ?? $entertainment_articles->first();
             $display_ent_articles = $entertainment_featured_articles ? $entertainment_articles : $entertainment_articles->skip(1);
         @endphp
-		<section id="Latest-entertainment" class="max-w-[1200px] mx-auto flex flex-col gap-[30px] mt-[70px]">
+		<section id="Latest-entertainment" class="max-w-[1200px] mx-auto flex flex-col gap-[30px] mt-[70px] px-4 xl:px-0">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
 					Latest For You <br />
 					in Entertainment
 				</h2>
 			</div>
-			<div class="flex justify-between items-center h-fit">
+			<div class="flex flex-col lg:flex-row justify-between items-center h-fit gap-[30px] lg:gap-0">
 				@if($display_ent_featured)
-				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
+				<div class="featured-news-card relative w-full lg:max-w-[675px] h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
 					<img src="{{Storage::url($display_ent_featured->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
 					<div class="card-detail w-full flex items-end p-[30px] relative z-20">
@@ -136,8 +176,8 @@
 				</div>
 				@endif
 				@if($display_ent_articles->count() > 0)
-				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
-					<div class="w-[455px] flex flex-col gap-5 shrink-0">
+				<div class="h-[424px] w-full lg:w-fit px-0 md:px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
+					<div class="w-full md:w-[455px] flex flex-col gap-5 shrink-0">
 
 						@foreach($display_ent_articles as $article)
 						<a href="{{route('front.details', $article->slug)}}" class="card py-[2px]">
@@ -164,16 +204,16 @@
             $display_bus_featured = $business_featured_articles ?? $business_articles->first();
             $display_bus_articles = $business_featured_articles ? $business_articles : $business_articles->skip(1);
         @endphp
-		<section id="Latest-business" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
+		<section id="Latest-business" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px] px-4 xl:px-0">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
 					Latest For You <br />
 					in Business
 				</h2>
 			</div>
-			<div class="flex justify-between items-center h-fit">
+			<div class="flex flex-col lg:flex-row justify-between items-center h-fit gap-[30px] lg:gap-0">
 				@if($display_bus_featured)
-				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
+				<div class="featured-news-card relative w-full lg:max-w-[675px] h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
 					<img src="{{Storage::url($display_bus_featured->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
 					<div class="card-detail w-full flex items-end p-[30px] relative z-20">
@@ -186,8 +226,8 @@
 				</div>
 				@endif
 				@if($display_bus_articles->count() > 0)
-				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
-					<div class="w-[455px] flex flex-col gap-5 shrink-0">
+				<div class="h-[424px] w-full lg:w-fit px-0 md:px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
+					<div class="w-full md:w-[455px] flex flex-col gap-5 shrink-0">
 
 						@foreach($display_bus_articles as $article)
 						<a href="{{route('front.details', $article->slug)}}" class="card py-[2px]">
@@ -214,16 +254,16 @@
             $display_auto_featured = $automotive_featured_articles ?? $automotive_articles->first();
             $display_auto_articles = $automotive_featured_articles ? $automotive_articles : $automotive_articles->skip(1);
         @endphp
-		<section id="Latest-automotive" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
+		<section id="Latest-automotive" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px] px-4 xl:px-0">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
 					Latest For You <br />
 					in Automotive
 				</h2>
 			</div>
-			<div class="flex justify-between items-center h-fit">
+			<div class="flex flex-col lg:flex-row justify-between items-center h-fit gap-[30px] lg:gap-0">
 				@if($display_auto_featured)
-				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
+				<div class="featured-news-card relative w-full lg:max-w-[675px] h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
 					<img src="{{Storage::url($display_auto_featured->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
 					<div class="card-detail w-full flex items-end p-[30px] relative z-20">
@@ -236,8 +276,8 @@
 				</div>
 				@endif
 				@if($display_auto_articles->count() > 0)
-				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
-					<div class="w-[455px] flex flex-col gap-5 shrink-0">
+				<div class="h-[424px] w-full lg:w-fit px-0 md:px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
+					<div class="w-full md:w-[455px] flex flex-col gap-5 shrink-0">
 
 						@foreach($display_auto_articles as $article)
 						<a href="{{route('front.details', $article->slug)}}" class="card py-[2px]">
