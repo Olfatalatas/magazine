@@ -109,6 +109,10 @@
 			</div>
 		</section>
 		@if($entertainment_featured_articles || $entertainment_articles->count() > 0)
+        @php
+            $display_ent_featured = $entertainment_featured_articles ?? $entertainment_articles->first();
+            $display_ent_articles = $entertainment_featured_articles ? $entertainment_articles : $entertainment_articles->skip(1);
+        @endphp
 		<section id="Latest-entertainment" class="max-w-[1200px] mx-auto flex flex-col gap-[30px] mt-[70px]">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
@@ -117,23 +121,24 @@
 				</h2>
 			</div>
 			<div class="flex justify-between items-center h-fit">
-				@if($entertainment_featured_articles)
+				@if($display_ent_featured)
 				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-					<img src="{{Storage::url($entertainment_featured_articles->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
+					<img src="{{Storage::url($display_ent_featured->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
 					<div class="card-detail w-full flex items-end p-[30px] relative z-20">
 						<div class="flex flex-col gap-[10px]">
 							<p class="text-white">Featured</p>
-							<a href="{{route('front.details', $entertainment_featured_articles->slug)}}" class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{$entertainment_featured_articles->name}}</a>
-							<p class="text-white">{{$entertainment_featured_articles->created_at->format('M d, Y')}}</p>
+							<a href="{{route('front.details', $display_ent_featured->slug)}}" class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{$display_ent_featured->name}}</a>
+							<p class="text-white">{{$display_ent_featured->created_at->format('M d, Y')}}</p>
 						</div>
 					</div>
 				</div>
 				@endif
+				@if($display_ent_articles->count() > 0)
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
 
-						@forelse($entertainment_articles as $article)
+						@foreach($display_ent_articles as $article)
 						<a href="{{route('front.details', $article->slug)}}" class="card py-[2px]">
 							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300">
 								<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
@@ -145,16 +150,19 @@
 								</div>
 							</div>
 						</a>
-						@empty
-						<p>belum ada artikel terbaru</p>
-						@endforelse
+						@endforeach
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
+				@endif
 			</div>
 		</section>
 		@endif
 		@if($business_featured_articles || $business_articles->count() > 0)
+        @php
+            $display_bus_featured = $business_featured_articles ?? $business_articles->first();
+            $display_bus_articles = $business_featured_articles ? $business_articles : $business_articles->skip(1);
+        @endphp
 		<section id="Latest-business" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
@@ -163,23 +171,24 @@
 				</h2>
 			</div>
 			<div class="flex justify-between items-center h-fit">
-				@if($business_featured_articles)
+				@if($display_bus_featured)
 				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-					<img src="{{Storage::url($business_featured_articles->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
+					<img src="{{Storage::url($display_bus_featured->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
 					<div class="card-detail w-full flex items-end p-[30px] relative z-20">
 						<div class="flex flex-col gap-[10px]">
 							<p class="text-white">Featured</p>
-							<a href="{{route('front.details', $business_featured_articles->slug)}}" class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{$business_featured_articles->name}}</a>
-							<p class="text-white">{{$business_featured_articles->created_at->format('M d, Y')}}</p>
+							<a href="{{route('front.details', $display_bus_featured->slug)}}" class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{$display_bus_featured->name}}</a>
+							<p class="text-white">{{$display_bus_featured->created_at->format('M d, Y')}}</p>
 						</div>
 					</div>
 				</div>
 				@endif
+				@if($display_bus_articles->count() > 0)
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
 
-						@forelse($business_articles as $article)
+						@foreach($display_bus_articles as $article)
 						<a href="{{route('front.details', $article->slug)}}" class="card py-[2px]">
 							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300">
 								<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
@@ -191,16 +200,19 @@
 								</div>
 							</div>
 						</a>
-						@empty
-						<p>belum ada artikel terbaru</p>
-						@endforelse
+						@endforeach
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
+				@endif
 			</div>
 		</section>
 		@endif
 		@if($automotive_featured_articles || $automotive_articles->count() > 0)
+        @php
+            $display_auto_featured = $automotive_featured_articles ?? $automotive_articles->first();
+            $display_auto_articles = $automotive_featured_articles ? $automotive_articles : $automotive_articles->skip(1);
+        @endphp
 		<section id="Latest-automotive" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
@@ -209,23 +221,24 @@
 				</h2>
 			</div>
 			<div class="flex justify-between items-center h-fit">
-				@if($automotive_featured_articles)
+				@if($display_auto_featured)
 				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-					<img src="{{Storage::url($automotive_featured_articles->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
+					<img src="{{Storage::url($display_auto_featured->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
 					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
 					<div class="card-detail w-full flex items-end p-[30px] relative z-20">
 						<div class="flex flex-col gap-[10px]">
 							<p class="text-white">Featured</p>
-							<a href="{{route('front.details', $automotive_featured_articles->slug)}}" class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{$automotive_featured_articles->name}}</a>
-							<p class="text-white">{{$automotive_featured_articles->created_at->format('M d, Y')}}</p>
+							<a href="{{route('front.details', $display_auto_featured->slug)}}" class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{$display_auto_featured->name}}</a>
+							<p class="text-white">{{$display_auto_featured->created_at->format('M d, Y')}}</p>
 						</div>
 					</div>
 				</div>
 				@endif
+				@if($display_auto_articles->count() > 0)
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
 
-						@forelse($automotive_articles as $article)
+						@foreach($display_auto_articles as $article)
 						<a href="{{route('front.details', $article->slug)}}" class="card py-[2px]">
 							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#0285b5] transition-all duration-300">
 								<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
@@ -237,12 +250,11 @@
 								</div>
 							</div>
 						</a>
-						@empty
-						<p>belum ada artikel terbaru</p>
-						@endforelse
+						@endforeach
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
+				@endif
 			</div>
 		</section>
 		@endif
@@ -255,8 +267,7 @@
 @push('after-scripts')
 		<script src="{{asset('customjs/two-lines-text.js')}}"></script>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-		<!-- JavaScript -->
+		<!-- Carousel -->
 		<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 		<script src="{{asset('customjs/carousel.js')}}"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
 @endpush

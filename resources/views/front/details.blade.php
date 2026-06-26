@@ -69,7 +69,18 @@
 					</div>
 				</a>
                 @empty
-                <p>belum ada artiker terbaru lainnya</p>
+				<div class="flex flex-col items-center justify-center gap-3 p-6 bg-[#F9F9FC] rounded-[20px] ring-1 ring-[#EEF0F7] text-center">
+					<div class="w-12 h-12 flex items-center justify-center bg-white rounded-full shrink-0 shadow-sm border border-[#EEF0F7]">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M22 10V15C22 20 20 22 15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H14" stroke="#A3A6AE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M22 10H18C15 10 14 9 14 6V2L22 10Z" stroke="#A3A6AE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+					<div class="flex flex-col gap-1">
+						<p class="font-semibold text-sm">Belum Ada Artikel</p>
+						<p class="text-xs leading-[18px] text-[#A3A6AE]">Penulis ini belum memiliki artikel terbaru lainnya.</p>
+					</div>
+				</div>
                 @endforelse
 			</div>
 
@@ -144,5 +155,4 @@
 
 @push('after-scripts')
         <script src="js/two-lines-text.js"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
 @endpush

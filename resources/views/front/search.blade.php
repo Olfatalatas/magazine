@@ -58,18 +58,11 @@
                 @empty
                 <p>belum ada artikel dengan keyword tersebut</p>
                 @endforelse
-				<div class="side-bar flex flex-col shrink-0 gap-10 fixed inset-y-0 left-0 w-[100px] h-4/6 self-center m-1"> 
-					<div class="ads flex flex-col gap-3 w-full">
-						<a href="{{$square_ads_1->link}}">
-							<img src="{{Storage::url($square_ads_1->thumbnail)}}" class="object-cover rounded-xl w-full h-[350px]" alt="ads" />
-						</a>
-					</div>
-				</div>
 			</div>
+		</section>
 		</section>
 	</body>
 @endsection
 
 @push('after-scripts')
-		<script src="https://cdn.tailwindcss.com"></script>
 @endpush
