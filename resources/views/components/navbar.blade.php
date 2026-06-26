@@ -1,7 +1,7 @@
 	<nav id="Navbar" class="max-w-[1000px] mx-auto flex justify-between items-center mt-[30px]">
 		<div class="logo-container flex gap-[30px] items-center sm:gap-[10px]">
 			<a href="{{route('front.index')}}" class="flex shrink-0">
-				<img src="{{asset('assets/images/logos/logo.svg')}}" alt="logo" class="h-11 w-auto" />
+				<img src="{{asset('assets/images/logos/magazine logo.svg')}}" alt="logo" class="h-11 w-auto" />
 			</a>
 			<div class="h-12 border border-[#E8EBF4]"></div>
 			<form method="GET" action="{{route('front.search')}}"
