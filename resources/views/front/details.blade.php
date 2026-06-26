@@ -1,4 +1,5 @@
 @extends('front.master')
+@section('title', $articleNews->name)
 @section('content')
 
 <body class="font-[Poppins]">

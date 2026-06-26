@@ -1,4 +1,5 @@
 @extends('front.master')
+@section('title', 'Category: ' . $category->name)
 @section('content')
 
 <body class="font-[Poppins] pb-[83px]">

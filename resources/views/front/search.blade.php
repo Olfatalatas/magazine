@@ -1,4 +1,5 @@
 @extends('front.master')
+@section('title', 'Search: ' . $keyword)
 @section('content')
 
 	<body class="font-[Poppins]">

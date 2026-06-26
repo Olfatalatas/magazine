@@ -1,4 +1,5 @@
 @extends('front.master')
+@section('title', 'Home')
 @section('content')
 	<body class="font-[Poppins] pb-[72px]">
 		<x-navbar/>
