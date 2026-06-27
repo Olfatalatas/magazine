@@ -1,7 +1,7 @@
 	<nav id="Navbar" class="max-w-[1000px] w-full mx-auto flex flex-col md:flex-row justify-between items-center mt-[30px] px-4 xl:px-0 gap-4 md:gap-8">
 		<div class="logo-container flex flex-col md:flex-row gap-[10px] md:gap-[30px] items-center w-full md:flex-1">
 			<a href="{{route('front.index')}}" class="flex shrink-0">
-				<img src="{{asset('assets/images/logos/magazine logo.svg')}}" alt="logo" class="h-11 w-auto" />
+				<img src="{{asset('assets/images/logos/magazine logo.svg')}}" alt="logo" class="h-[70px] md:h-[80px] w-auto" />
 			</a>
 			<div class="hidden md:block h-12 border border-[#E8EBF4]"></div>
 			<form method="GET" action="{{route('front.search')}}"

@@ -4,28 +4,75 @@
 	<body class="font-[Poppins] pb-[72px]">
 		<x-navbar/>
 		<nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px] px-4 xl:px-0 relative z-40">
-			<!-- Desktop/Tablet: Category Button -->
-			<div class="hidden md:flex flex-col items-center relative">
-				<button onclick="document.getElementById('desktopCategoryList').classList.toggle('hidden')" class="rounded-full p-[12px_22px] flex items-center gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5] bg-white cursor-pointer">
-					<span>Explore Categories</span>
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 transition-transform duration-300">
-						<path d="M19.9201 8.9502L13.4001 15.4702C12.6301 16.2402 11.3701 16.2402 10.6001 15.4702L4.08008 8.9502" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</button>
-				
-				<!-- Dropdown (Grid Sideways) -->
-				<div id="desktopCategoryList" class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50">
-					<div class="w-max max-w-[90vw] bg-white rounded-[20px] shadow-[0_10px_30px_0_rgba(0,0,0,0.1)] border border-[#EEF0F7] p-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
-						@foreach($categories as $category)
-						<a href="{{route('front.category', $category->slug)}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
-							<div class="w-6 h-6 flex shrink-0">
-								<img src="{{Storage::url($category->icon)}}" alt="icon" />
-							</div>
-							<span class="whitespace-nowrap">{{$category->name}}</span>
-						</a>
-						@endforeach
+			<!-- Desktop/Tablet Category List -->
+			<div class="hidden md:flex flex-wrap justify-center items-center gap-4 w-full">
+				<!-- First 5 Categories (Always visible on Tablet and Desktop) -->
+				@foreach($categories->take(5) as $category)
+				<a href="{{route('front.category', $category->slug)}}" class="rounded-full p-[12px_22px] flex items-center gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
+					<div class="w-6 h-6 flex shrink-0">
+						<img src="{{Storage::url($category->icon)}}" alt="icon" />
+					</div>
+					<span class="whitespace-nowrap">{{$category->name}}</span>
+				</a>
+				@endforeach
+
+				<!-- Categories 6-8 (Visible on Desktop only) -->
+				@foreach($categories->skip(5)->take(3) as $category)
+				<a href="{{route('front.category', $category->slug)}}" class="hidden lg:flex rounded-full p-[12px_22px] items-center gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
+					<div class="w-6 h-6 flex shrink-0">
+						<img src="{{Storage::url($category->icon)}}" alt="icon" />
+					</div>
+					<span class="whitespace-nowrap">{{$category->name}}</span>
+				</a>
+				@endforeach
+
+				<!-- Tablet "More Categories" Button (Visible only on Tablet, hidden on Desktop) -->
+				@if($categories->count() > 5)
+				<div class="relative md:block lg:hidden">
+					<button onclick="document.getElementById('tabletMoreCategories').classList.toggle('hidden')" class="rounded-full p-[12px_22px] flex items-center gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5] bg-white cursor-pointer">
+						<span class="whitespace-nowrap">More</span>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500">
+							<path d="M19.9201 8.9502L13.4001 15.4702C12.6301 16.2402 11.3701 16.2402 10.6001 15.4702L4.08008 8.9502" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</button>
+					<div id="tabletMoreCategories" class="hidden absolute top-full right-0 mt-2 z-50">
+						<div class="bg-white rounded-[20px] shadow-[0_10px_30px_0_rgba(0,0,0,0.1)] border border-[#EEF0F7] p-4 flex flex-col gap-4 w-max max-h-[300px] overflow-y-auto">
+							@foreach($categories->skip(5) as $category)
+							<a href="{{route('front.category', $category->slug)}}" class="rounded-full p-[12px_22px] flex items-center gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
+								<div class="w-6 h-6 flex shrink-0">
+									<img src="{{Storage::url($category->icon)}}" alt="icon" />
+								</div>
+								<span class="whitespace-nowrap">{{$category->name}}</span>
+							</a>
+							@endforeach
+						</div>
 					</div>
 				</div>
+				@endif
+
+				<!-- Desktop "More Categories" Button (Visible only on Desktop) -->
+				@if($categories->count() > 8)
+				<div class="relative hidden lg:block">
+					<button onclick="document.getElementById('desktopMoreCategories').classList.toggle('hidden')" class="rounded-full p-[12px_22px] flex items-center gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5] bg-white cursor-pointer">
+						<span class="whitespace-nowrap">More</span>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500">
+							<path d="M19.9201 8.9502L13.4001 15.4702C12.6301 16.2402 11.3701 16.2402 10.6001 15.4702L4.08008 8.9502" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</button>
+					<div id="desktopMoreCategories" class="hidden absolute top-full right-0 mt-2 z-50">
+						<div class="bg-white rounded-[20px] shadow-[0_10px_30px_0_rgba(0,0,0,0.1)] border border-[#EEF0F7] p-4 flex flex-col gap-4 w-max max-h-[300px] overflow-y-auto">
+							@foreach($categories->skip(8) as $category)
+							<a href="{{route('front.category', $category->slug)}}" class="rounded-full p-[12px_22px] flex items-center gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5]">
+								<div class="w-6 h-6 flex shrink-0">
+									<img src="{{Storage::url($category->icon)}}" alt="icon" />
+								</div>
+								<span class="whitespace-nowrap">{{$category->name}}</span>
+							</a>
+							@endforeach
+						</div>
+					</div>
+				</div>
+				@endif
 			</div>
 
 			<!-- Mobile: Burger Menu -->
@@ -89,7 +136,7 @@
 					Latest Hot News <br />
 					Good for Curiousity
 				</h2>
-				<p class="badge-orange rounded-full p-[8px_18px] bg-[#67caee] font-bold text-sm leading-[21px] text-[#0285b5] w-fit">UP TO DATE</p>
+				<p class="badge-orange rounded-full p-[8px_18px] bg-[#67caee] font-bold text-sm leading-[21px] text-[#0285b5] w-fit whitespace-nowrap shrink-0 text-center">UP TO DATE</p>
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
 				@forelse($articles as $article)
@@ -155,11 +202,12 @@
             $display_ent_articles = $entertainment_featured_articles ? $entertainment_articles : $entertainment_articles->skip(1);
         @endphp
 		<section id="Latest-entertainment" class="max-w-[1200px] mx-auto flex flex-col gap-[30px] mt-[70px] px-4 xl:px-0">
-			<div class="flex justify-between items-center">
+			<div class="flex justify-between items-center pb-4">
 				<h2 class="font-bold text-[26px] leading-[39px]">
 					Latest For You <br />
 					in Entertainment
 				</h2>
+				<a href="{{route('front.category', 'entertainment')}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5] whitespace-nowrap bg-white">Explore All</a>
 			</div>
 			<div class="flex flex-col lg:flex-row justify-between items-center h-fit gap-[30px] lg:gap-0">
 				@if($display_ent_featured)
@@ -205,11 +253,12 @@
             $display_bus_articles = $business_featured_articles ? $business_articles : $business_articles->skip(1);
         @endphp
 		<section id="Latest-business" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px] px-4 xl:px-0">
-			<div class="flex justify-between items-center">
+			<div class="flex justify-between items-center pb-4">
 				<h2 class="font-bold text-[26px] leading-[39px]">
 					Latest For You <br />
 					in Business
 				</h2>
+				<a href="{{route('front.category', 'business')}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5] whitespace-nowrap bg-white">Explore All</a>
 			</div>
 			<div class="flex flex-col lg:flex-row justify-between items-center h-fit gap-[30px] lg:gap-0">
 				@if($display_bus_featured)
@@ -255,11 +304,12 @@
             $display_auto_articles = $automotive_featured_articles ? $automotive_articles : $automotive_articles->skip(1);
         @endphp
 		<section id="Latest-automotive" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px] px-4 xl:px-0">
-			<div class="flex justify-between items-center">
+			<div class="flex justify-between items-center pb-4">
 				<h2 class="font-bold text-[26px] leading-[39px]">
 					Latest For You <br />
 					in Automotive
 				</h2>
+				<a href="{{route('front.category', 'automotive')}}" class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#0285b5] whitespace-nowrap bg-white">Explore All</a>
 			</div>
 			<div class="flex flex-col lg:flex-row justify-between items-center h-fit gap-[30px] lg:gap-0">
 				@if($display_auto_featured)
